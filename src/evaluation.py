@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 
 def mae(y_true, y_pred) -> float:
@@ -24,6 +25,40 @@ def mape(y_true, y_pred) -> float:
     y_pred = np.asarray(y_pred)
     y_true = np.clip(y_true, 1, None)
     return float(np.mean(np.abs((y_true - y_pred) / y_true)) * 100.0)
+
+
+def plot_forecast(fc: pd.DataFrame, out_path: Path) -> None:
+    fc = fc.copy()
+    fc["date"] = pd.to_datetime(fc["date"])
+    fc = fc.sort_values("date")
+
+    # Larger, modern-readable canvas
+    fig, ax = plt.subplots(figsize=(12, 6), constrained_layout=True)
+
+    ax.plot(fc["date"], fc["demand"], label="Actual", linewidth=2.0)
+    ax.plot(fc["date"], fc["forecast"], label="Forecast", linewidth=2.0, alpha=0.9)
+
+    ax.set_title("60-Day Forecast vs Actual", pad=12)
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Demand")
+
+    # --- Fix the overlapping date labels properly ---
+    locator = mdates.AutoDateLocator(minticks=6, maxticks=10)
+    ax.xaxis.set_major_locator(locator)
+    ax.xaxis.set_major_formatter(mdates.ConciseDateFormatter(locator))
+    fig.autofmt_xdate(rotation=30, ha="right")
+
+    # Cleaner look
+    ax.grid(True, which="major", linestyle="--", linewidth=0.7, alpha=0.35)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    # Legend that doesn't block the plot
+    ax.legend(loc="upper left", frameon=True)
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out_path, dpi=220)
+    plt.close(fig)
 
 
 def main():
@@ -46,18 +81,9 @@ def main():
     metrics_path = processed / "forecast_metrics.csv"
     metrics_df.to_csv(metrics_path, index=False)
 
-    # Plot forecast vs actual
-    fc["date"] = pd.to_datetime(fc["date"])
-    plt.figure()
-    plt.plot(fc["date"], fc["demand"], label="Actual")
-    plt.plot(fc["date"], fc["forecast"], label="Forecast")
-    plt.title("60-Day Forecast vs Actual")
-    plt.xlabel("Date")
-    plt.ylabel("Demand")
-    plt.legend()
+    # Plot forecast vs actual (fixed formatting)
     fig_path = root / "reports" / "forecast_plot.png"
-    plt.tight_layout()
-    plt.savefig(fig_path, dpi=150)
+    plot_forecast(fc, fig_path)
 
     # Segment summary
     seg_summary = rfm.groupby("segment").agg(
