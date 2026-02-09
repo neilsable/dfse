@@ -45,58 +45,44 @@ After a successful run, DFSE generates:
 
 ## How to run
 
-### Option A — Makefile (recommended)
 ```bash
+# =====================================
+# OPTION A — Makefile (recommended)
+# =====================================
 make run
-Option B — One-command script
+
+
+# =====================================
+# OPTION B — One-command script
+# =====================================
 ./run.sh
 
-Option C — Manual
+
+# =====================================
+# OPTION C — Manual (cross-platform)
+# =====================================
+
+# Create virtual environment
 python3 -m venv .venv
 
+# Activate environment
 # macOS / Linux:
 source .venv/bin/activate
 
 # Windows (PowerShell):
 # .\.venv\Scripts\Activate.ps1
 
+# Install dependencies
 python3 -m pip install -r requirements.txt
+
+# Run pipeline and evaluation
 python3 -m src.pipeline
 python3 -m src.evaluation
 
-Open outputs (cross-platform)
-macOS
-open reports/forecast_plot.png
-open reports/executive_summary.md
-open data/processed/forecast_metrics.csv
-open data/processed/segment_summary.csv
-
-Linux
-xdg-open reports/forecast_plot.png
-xdg-open reports/executive_summary.md
-xdg-open data/processed/forecast_metrics.csv
-xdg-open data/processed/segment_summary.csv
-
-Windows (PowerShell)
-Start-Process reports\forecast_plot.png
-Start-Process reports\executive_summary.md
-Start-Process data\processed\forecast_metrics.csv
-Start-Process data\processed\segment_summary.csv
-
-Engineering hygiene
-
-Dependencies pinned in requirements.txt
-
-Makefile included for standardised execution
-
-CI runs the pipeline on push/PR to keep the repo runnable
-
-Synthetic data is used for full reproducibility (no private data), while preserving realistic patterns (seasonality, promotions, long-tail customers)
-
-Assumptions & trade-offs
 
 I prioritised interpretability over maximal accuracy to reflect stakeholder needs.
 
 Promotional effects are modelled explicitly to separate demand lift from seasonality.
 
 The project is intentionally focused on traditional data science rather than GenAI.
+
