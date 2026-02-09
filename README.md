@@ -1,42 +1,79 @@
 cat > README.md << 'EOF'
-# DFSE — Decision-Driven Forecasting & Segmentation Engine
+# DFSE  
+## Decision-Driven Forecasting & Segmentation Engine
 
-A production-minded **traditional data science** project: demand forecasting + customer segmentation, built to simulate ambiguous consulting requirements and produce decision-grade outputs.
+<p align="center">
+  <strong>Production-minded classical data science for ambiguous, real-world business problems</strong>
+</p>
 
-**What this demonstrates:**
-- End-to-end delivery (data → modelling → evaluation → stakeholder-ready narrative)
-- Rigorous classical modelling (time series + segmentation)
-- Clean, maintainable Python + SQL-style transformations
-- Clear communication: outputs are actionable, not just “model scores”
+<p align="center">
+  <em>Forecasting • Segmentation • Evaluation • Stakeholder-ready outputs</em>
+</p>
 
 ---
 
-## Outputs (at a glance)
+## 🚀 Why this project exists
 
-**Forecast vs Actual (60-day holdout)**  
+In real consulting engagements, problems are rarely clean or fully specified.
+
+This project simulates that reality: limited documentation, evolving requirements, and a need to deliver **decision-grade insights**, not dashboards or academic models.
+
+DFSE demonstrates how to:
+- independently scope an unclear problem,
+- apply **rigorous traditional data science**,
+- build clean, reproducible pipelines,
+- and communicate results in a way stakeholders can act on.
+
+---
+
+## 📊 What this delivers (at a glance)
+
+### Demand Forecasting (60-day holdout)
 ![Forecast Plot](assets/forecast_plot.png)
 
-Key artefacts:
-- `data/processed/forecast_metrics.csv` — MAE / RMSE / MAPE
-- `data/processed/segment_summary.csv` — cluster characteristics
-- `reports/executive_summary.md` — stakeholder narrative
+**Key artefacts produced:**
+- `forecast_metrics.csv` — MAE, RMSE, MAPE
+- `segment_summary.csv` — interpretable customer clusters
+- `executive_summary.md` — consultant-style narrative & recommendations
 
 ---
 
-## Project structure
+## 🧠 Modelling approach
 
-- `src/` — pipelines + modelling + evaluation
-- `data/processed/` — generated datasets + outputs
-- `reports/` — executive summary + plots
-- `sql/` — Snowflake-style query examples (illustrative)
+### 1️⃣ Forecasting — Classical, interpretable, robust
+- **Model:** SARIMAX
+- **Seasonality:** Weekly (s = 7)
+- **Exogenous driver:** Promotional activity
+- **Design choice:** Optimised for *stability and explainability*, not black-box accuracy
+
+Why this matters:
+> Stakeholders must trust and understand forecasts before acting on them.
 
 ---
 
-## Quickstart (local)
+### 2️⃣ Segmentation — Commercially actionable clustering
+- **Features:**  
+  - Recency (days since last purchase)  
+  - Frequency (number of transactions)  
+  - Monetary value (total spend)  
+  - Average order value  
+- **Method:** Standard scaling + K-Means
 
-### 1) Setup
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+Segments are designed to map directly to actions:
+- retention & loyalty
+- win-back campaigns
+- low-cost onboarding strategies
 
+---
+
+## 🏗️ Project structure
+
+```text
+dfse/
+├── src/                 # pipelines, models, evaluation
+├── data/processed/      # generated datasets & outputs
+├── reports/             # executive summary & plots
+├── assets/              # visuals for GitHub
+├── sql/                 # Snowflake-style analytical queries
+├── run.sh               # one-command execution
+└── README.md
