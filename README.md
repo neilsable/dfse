@@ -60,7 +60,7 @@ DFSE is a **production-ready analytics engine** that combines time-series foreca
 
 **Step 1:** Download the project
 ```bash
-git clone https://github.com/yourusername/dfse.git
+git clone https://github.com/neilsable/dfse.git
 cd dfse
 ```
 
@@ -94,7 +94,7 @@ No problem! Use this instead:
 
 ```bash
 # Step 1: Download project (same as above)
-git clone https://github.com/yourusername/dfse.git
+git clone https://github.com/neilsable/dfse.git
 cd dfse
 
 # Step 2: Run this simple script
@@ -189,7 +189,7 @@ data/processed/
 **Problem:** Libraries won't install  
 **Solution:** Make sure you activated the virtual environment (the `source .venv/bin/activate` step)
 
-**Still stuck?** Open an [issue on GitHub](https://github.com/yourusername/dfse/issues) and I'll help!
+**Still stuck?** Open an [issue on GitHub](https://github.com/neilsable/dfse/issues) and I'll help!
 
 ---
 
@@ -244,6 +244,135 @@ DFSE is perfect for:
 
 ---
 
+## 💭 How I Built This (My Approach)
+
+### 🎯 The Problem I Wanted to Solve
+
+Most data science projects are either:
+- Too theoretical (just Jupyter notebooks with no real workflow)
+- Too complex (enterprise-level code that's hard to understand)
+
+**I wanted something in between** — a project that shows real production skills but stays simple enough for anyone to learn from.
+
+---
+
+### 🏗️ My Design Decisions
+
+#### **1. Why Classical Time-Series Instead of ML?**
+
+```python
+# I chose ARIMA/Exponential Smoothing over LSTM/Prophet because:
+✅ More interpretable (you can explain WHY it predicts what it does)
+✅ Works well with limited data
+✅ Faster to train and run
+✅ Industry standard for demand forecasting
+```
+
+For business decisions, **explainability > accuracy by 2%**. Stakeholders need to trust your model.
+
+#### **2. Why RFM Segmentation?**
+
+```python
+# RFM = Recency, Frequency, Monetary Value
+✅ Simple enough to explain to non-technical people
+✅ Actionable (you can target segments immediately)
+✅ Proven technique used by real companies
+✅ No complex clustering algorithms to debug
+```
+
+I wanted to show I understand **business value**, not just fancy algorithms.
+
+#### **3. Code Structure Philosophy**
+
+```
+src/
+├── pipeline.py       # Main logic (what happens)
+├── evaluation.py     # Quality checks (is it good?)
+└── utils/            # Helpers (how we do it)
+```
+
+**Why this structure?**
+- ✅ Separates **WHAT** from **HOW** 
+- ✅ Easy to test individual pieces
+- ✅ Can swap out methods without breaking everything
+- ✅ Follows production best practices
+
+#### **4. Automation Over Documentation**
+
+Instead of writing "Step 1: Do this, Step 2: Do that..." I built:
+
+```bash
+make run  # Just works™
+```
+
+**Why?**
+- Users don't read long instructions
+- Automation forces you to think about reproducibility
+- Shows DevOps thinking, not just data science
+
+---
+
+### 🧠 What I Learned Building This
+
+| Challenge | What I Did | Why It Matters |
+|-----------|-----------|----------------|
+| **Data Generation** | Built synthetic data generator instead of using real data | Shows I can create realistic test scenarios |
+| **Error Handling** | Added validation at each pipeline step | Production code needs to fail gracefully |
+| **Output Design** | Created both technical (CSV) and business (MD) outputs | Data scientists serve multiple audiences |
+| **Environment Setup** | Made it work on Mac, Linux, AND Windows | Real tools need to work everywhere |
+
+---
+
+### 🔧 Technical Highlights
+
+Here's what makes this code different:
+
+#### **Clean Data Pipeline**
+```python
+# Instead of messy notebooks, I built a clear pipeline:
+raw_data → validation → transformation → modeling → evaluation → reporting
+```
+
+#### **Modular Functions**
+```python
+# Each function does ONE thing well
+def calculate_rfm_score(df):
+    """Takes customer data, returns RFM segments"""
+    # Not: calculate_rfm_and_make_plots_and_send_email()
+```
+
+#### **Type Hints & Documentation**
+```python
+def forecast_demand(data: pd.DataFrame, periods: int = 60) -> Dict[str, Any]:
+    """
+    Generate demand forecast with confidence intervals.
+    
+    Args:
+        data: Historical demand data with datetime index
+        periods: Number of future periods to forecast
+        
+    Returns:
+        Dictionary containing forecast, metrics, and plots
+    """
+```
+
+This isn't just "code that works" — it's **code others can maintain**.
+
+---
+
+### 🎓 Why I Made These Choices
+
+As someone looking to break into data science/analytics roles, I wanted to show:
+
+1. **I understand business needs** (decision-first approach)
+2. **I write production code** (not just experiments)
+3. **I communicate clearly** (reports for stakeholders, code for developers)
+4. **I think about the full lifecycle** (from data to decisions)
+
+This project represents **how I actually work**, not just what I know.
+
+---
+
 ## 📈 Sample Output
 
 <div align="center">
@@ -273,11 +402,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👤 Author
 
-**Your Name**
+**Neil Sable**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+- GitHub: [@neilsable](https://github.com/neilsable)
+- LinkedIn: [Neil Sable](https://www.linkedin.com/in/neil-sable-441aa42b2/)
+- Email: neilsable7@gmail.com
 
 ---
 
