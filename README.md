@@ -45,27 +45,23 @@ After a successful run, DFSE generates:
 
 ## How to run
 
+This project is intentionally simple to execute. Most users should only need the first command below.
+
 ```bash
-# =====================================
-# OPTION A — Makefile (recommended)
-# =====================================
+# Recommended: run everything end-to-end
 make run
 
 
-# =====================================
-# OPTION B — One-command script
-# =====================================
+# Alternative: explicit single entry point
 ./run.sh
 
 
-# =====================================
-# OPTION C — Manual (cross-platform)
-# =====================================
+# Manual execution (useful on fresh machines)
 
-# Create virtual environment
+# Create a virtual environment
 python3 -m venv .venv
 
-# Activate environment
+# Activate it
 # macOS / Linux:
 source .venv/bin/activate
 
@@ -75,9 +71,10 @@ source .venv/bin/activate
 # Install dependencies
 python3 -m pip install -r requirements.txt
 
-# Run pipeline and evaluation
+# Run the pipeline and evaluation
 python3 -m src.pipeline
 python3 -m src.evaluation
+
 
 
 I prioritised interpretability over maximal accuracy to reflect stakeholder needs.
@@ -85,4 +82,5 @@ I prioritised interpretability over maximal accuracy to reflect stakeholder need
 Promotional effects are modelled explicitly to separate demand lift from seasonality.
 
 The project is intentionally focused on traditional data science rather than GenAI.
+
 
