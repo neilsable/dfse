@@ -1,86 +1,124 @@
-# DFSE — Decision-Driven Forecasting & Segmentation Engine
-
-![Python](https://img.shields.io/badge/Python-3.x-111827?style=for-the-badge&logo=python&logoColor=white)
-![Traditional DS](https://img.shields.io/badge/Traditional%20DS-Forecasting%20%26%20Segmentation-111827?style=for-the-badge)
-![Reproducible](https://img.shields.io/badge/Reproducible-Makefile%20%2B%20run.sh-111827?style=for-the-badge)
-![CI](https://github.com/neilsable/dfse/actions/workflows/ci.yml/badge.svg)
-
-A self-directed, end-to-end data science project built to reflect how I deliver under ambiguity: **frame the problem, build robust classical models, and publish decision-ready outputs**.
-
----
-
-## What this project produces
+# DFSE  
+### Decision-Driven Forecasting & Segmentation Engine
 
 <p align="center">
-  <img src="assets/forecast_plot.png" alt="Forecast vs Actual (holdout window)" width="900" />
+  <img src="assets/forecast_plot.png" alt="Forecast vs Actual" width="880">
 </p>
 
-After a successful run, DFSE generates:
-
-### Reports
-- `reports/executive_summary.md` — concise narrative + recommendations
-- `reports/forecast_plot.png` — forecast vs actual visual
-
-### Data outputs
-- `data/processed/forecast_metrics.csv` — MAE / RMSE / MAPE
-- `data/processed/forecast_60d.csv` — actual vs forecast (holdout window)
-- `data/processed/rfm_segments.csv` — customer → segment assignment
-- `data/processed/segment_summary.csv` — segment characteristics
+<p align="center">
+  <b>Traditional data science, delivered with a modern, decision-first mindset.</b>
+</p>
 
 ---
 
-## Approach (deliberately traditional + explainable)
+## 👋 What is this?
 
-### Forecasting (SARIMAX)
-- Weekly seasonality modelled explicitly
-- Promotions included as an exogenous driver
-- Emphasis on **stability and interpretability** so decisions are explainable
+DFSE is a self-contained data science project that demonstrates how I approach
+real-world analytics problems end-to-end:
 
-### Segmentation (RFM + K-Means)
-- Features: Recency, Frequency, Monetary value, Average order value
-- Standardised inputs + K-Means clustering
-- Segments designed to map to actions (retention / win-back / low-touch engagement)
+- ambiguous requirements  
+- realistic data patterns  
+- explainable modelling choices  
+- clear, decision-ready outputs  
+
+It is designed to be **easy to run**, **easy to understand**, and **useful on first contact**.
 
 ---
 
-## How to run
+## 🚀 Start here (30 seconds)
 
-This project is intentionally simple to execute. Most users should only need the first command below.
+If you do nothing else, run this:
 
 ```bash
-# Recommended: run everything end-to-end
 make run
+That single command:
 
+sets up the environment
 
-# Alternative: explicit single entry point
+installs dependencies
+
+runs the full pipeline
+
+generates all outputs
+
+No prior setup required.
+
+📦 What you get after running it
+Outputs you can read
+Executive summary
+reports/executive_summary.md
+A plain-English explanation of the approach, results, and recommendations.
+
+Forecast visual
+reports/forecast_plot.png
+Actual vs forecasted demand, designed for clarity rather than dashboards.
+
+Outputs you can analyse
+data/processed/forecast_metrics.csv — forecast accuracy (MAE / RMSE / MAPE)
+
+data/processed/forecast_60d.csv — actual vs forecast values
+
+data/processed/rfm_segments.csv — customer-level segmentation
+
+data/processed/segment_summary.csv — segment-level characteristics
+
+🧠 What’s happening under the hood (high level)
+You don’t need to know this to run the project, but for context:
+
+Forecasting
+Classical SARIMAX time-series model
+
+Weekly seasonality modelled explicitly
+
+Promotional effects treated as exogenous signals
+
+Chosen for stability and interpretability, not black-box accuracy
+
+Segmentation
+Standard RFM features (recency, frequency, monetary value)
+
+K-Means clustering on scaled inputs
+
+Segments designed to map directly to commercial actions
+
+🛠 How else can I run it?
+If make isn’t available, you have two alternatives.
+
+One-command script
 ./run.sh
-
-
-# Manual execution (useful on fresh machines)
-
-# Create a virtual environment
+Manual (step-by-step)
 python3 -m venv .venv
 
-# Activate it
-# macOS / Linux:
+# macOS / Linux
 source .venv/bin/activate
 
-# Windows (PowerShell):
+# Windows (PowerShell)
 # .\.venv\Scripts\Activate.ps1
 
-# Install dependencies
 python3 -m pip install -r requirements.txt
-
-# Run the pipeline and evaluation
 python3 -m src.pipeline
 python3 -m src.evaluation
+👀 Viewing the results
+macOS
+open reports/forecast_plot.png
+open reports/executive_summary.md
+Linux
+xdg-open reports/forecast_plot.png
+xdg-open reports/executive_summary.md
+Windows
+Start-Process reports\forecast_plot.png
+Start-Process reports\executive_summary.md
+🧩 Why this project exists
+This is not a tutorial, dashboard, or GenAI demo.
 
+It reflects how I would deliver a real analytics engagement:
 
+focus on decisions, not novelty
 
-I prioritised interpretability over maximal accuracy to reflect stakeholder needs.
+choose robust, explainable methods
 
-Promotional effects are modelled explicitly to separate demand lift from seasonality.
+keep execution reproducible
 
-The project is intentionally focused on traditional data science rather than GenAI.
+make outputs understandable to non-technical stakeholders
 
-
+<p align="center"> <i>Built to be run, read, and understood — not just skimmed.</i> </p> ```
