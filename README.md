@@ -1,79 +1,64 @@
 cat > README.md << 'EOF'
-# DFSE  
-## Decision-Driven Forecasting & Segmentation Engine
+# DFSE — Decision-Driven Forecasting & Segmentation Engine
+**Traditional data science, delivered like a lean consultancy project**  
+Forecasting • Segmentation • Reproducible runs • Stakeholder-ready outputs
 
 <p align="center">
-  <strong>Production-minded classical data science for ambiguous, real-world business problems</strong>
+  <img src="assets/forecast_plot.png" alt="Forecast vs Actual" width="900" />
 </p>
 
 <p align="center">
-  <em>Forecasting • Segmentation • Evaluation • Stakeholder-ready outputs</em>
+  <b>One-command run</b> • <b>Clean repo hygiene</b> • <b>Decision-grade artefacts</b>
 </p>
 
 ---
 
-## 🚀 Why this project exists
+## ✅ What this project demonstrates (Snap-aligned)
 
-In real consulting engagements, problems are rarely clean or fully specified.
-
-This project simulates that reality: limited documentation, evolving requirements, and a need to deliver **decision-grade insights**, not dashboards or academic models.
-
-DFSE demonstrates how to:
-- independently scope an unclear problem,
-- apply **rigorous traditional data science**,
-- build clean, reproducible pipelines,
-- and communicate results in a way stakeholders can act on.
+- **Traditional, rigorous data science** (time series + classical clustering)
+- **End-to-end delivery** (data → modelling → evaluation → outputs)
+- **Operating under ambiguity** (clear assumptions + tradeoffs documented)
+- **Clean, production-minded workflow** (Makefile + CI)
+- **Communication** (executive summary + actionable segment framing)
 
 ---
 
-## 📊 What this delivers (at a glance)
+## 📦 Outputs you get
 
-### Demand Forecasting (60-day holdout)
-![Forecast Plot](assets/forecast_plot.png)
+After a successful run, you’ll have:
 
-**Key artefacts produced:**
-- `forecast_metrics.csv` — MAE, RMSE, MAPE
-- `segment_summary.csv` — interpretable customer clusters
-- `executive_summary.md` — consultant-style narrative & recommendations
+### Reports
+- `reports/executive_summary.md` — stakeholder-style narrative + recommendations
+- `reports/forecast_plot.png` — clean, readable forecast visual
 
----
-
-## 🧠 Modelling approach
-
-### 1️⃣ Forecasting — Classical, interpretable, robust
-- **Model:** SARIMAX
-- **Seasonality:** Weekly (s = 7)
-- **Exogenous driver:** Promotional activity
-- **Design choice:** Optimised for *stability and explainability*, not black-box accuracy
-
-Why this matters:
-> Stakeholders must trust and understand forecasts before acting on them.
+### Data artefacts
+- `data/processed/forecast_metrics.csv` — MAE / RMSE / MAPE
+- `data/processed/forecast_60d.csv` — forecast vs actual (holdout)
+- `data/processed/rfm_segments.csv` — customer-level segment labels
+- `data/processed/segment_summary.csv` — segment-level summary stats
 
 ---
 
-### 2️⃣ Segmentation — Commercially actionable clustering
-- **Features:**  
-  - Recency (days since last purchase)  
-  - Frequency (number of transactions)  
-  - Monetary value (total spend)  
-  - Average order value  
-- **Method:** Standard scaling + K-Means
+## 🧠 Modelling approach (high signal, no fluff)
 
-Segments are designed to map directly to actions:
-- retention & loyalty
-- win-back campaigns
-- low-cost onboarding strategies
+### 1) Forecasting — SARIMAX
+- Weekly seasonality (s=7)
+- Promo-day effect as an exogenous regressor
+- Optimised for **stability + interpretability** (stakeholders can trust it)
+
+### 2) Segmentation — RFM + K-Means
+- Features: Recency, Frequency, Monetary value + Average order value
+- Scaled features + K-Means clustering
+- Segments designed to map to actions:
+  - retention / loyalty
+  - win-back
+  - low-cost onboarding
 
 ---
 
-## 🏗️ Project structure
+## 🚀 How to run (pick one)
 
-```text
-dfse/
-├── src/                 # pipelines, models, evaluation
-├── data/processed/      # generated datasets & outputs
-├── reports/             # executive summary & plots
-├── assets/              # visuals for GitHub
-├── sql/                 # Snowflake-style analytical queries
-├── run.sh               # one-command execution
-└── README.md
+### Option A — One-command runner (recommended)
+```bash
+chmod +x run.sh
+./run.sh
