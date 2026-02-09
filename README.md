@@ -3,7 +3,7 @@ cat > README.md << 'EOF'
 
 A production-minded **traditional data science** project: demand forecasting + customer segmentation, built to simulate ambiguous consulting requirements and produce decision-grade outputs.
 
-**What this demonstrates (Snap-aligned):**
+**What this demonstrates:**
 - End-to-end delivery (data → modelling → evaluation → stakeholder-ready narrative)
 - Rigorous classical modelling (time series + segmentation)
 - Clean, maintainable Python + SQL-style transformations
@@ -39,3 +39,4 @@ Key artefacts:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+
