@@ -204,9 +204,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+- GitHub: https://github.com/neilsable
+- LinkedIn: https://www.linkedin.com/in/neil-sable/
+- Email: neilsable7@gmail.com
 
 ---
 
@@ -223,3 +223,4 @@ Give a ⭐️ if this project helped you!
 [Back to Top](#-dfse--decision-driven-forecasting--segmentation-engine)
 
 </div>
+
