@@ -55,58 +55,24 @@ After a successful run, you will find:
 
 If you are new to Python projects, start here.
 
+This project is designed so that most users only need **one command**.
+
 ```bash
 make run
-
-# If make is not available:
 ./run.sh
-
-# Manual execution (optional):
 python3 -m venv .venv
 source .venv/bin/activate        # macOS / Linux
 # .\.venv\Scripts\Activate.ps1   # Windows (PowerShell)
 python3 -m pip install -r requirements.txt
 python3 -m src.pipeline
 python3 -m src.evaluation
-That single workflow:
 
-sets up the environment
+## What this does Running the workflow above:
 
-installs dependencies
+1. sets up the environment
+2. installs all required dependencies
+3. runs the full forecasting and segmentation pipeline
+4. generates all reports and data outputs
 
-runs the full pipeline
-
-generates all outputs
-
-Viewing the results
-macOS:
-open reports/forecast_plot.png
-open reports/executive_summary.md
-
-Linux:
-xdg-open reports/forecast_plot.png
-xdg-open reports/executive_summary.md
-
-Windows (PowerShell):
-Start-Process reports\forecast_plot.png
-Start-Process reports\executive_summary.md
-
-How the modelling works (high level)
-Forecasting
-SARIMAX with weekly seasonality and promotional effects, chosen for stability
-and interpretability rather than black-box accuracy.
-
-Segmentation
-Standard RFM features combined with K-Means clustering to create actionable
-customer groups.
-
-Why this project exists
-This project reflects how I would deliver a real analytics task:
-
-start from ambiguity
-
-choose robust, explainable methods
-
-keep execution reproducible
-
-focus on outputs stakeholders can act on
+You do not need to run every command above.
+For most users, make run is sufficient.
